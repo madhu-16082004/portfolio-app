@@ -12,47 +12,92 @@
 
     <style>
         body {
-            color:white;
-            background-color:black;
+            color: white;
+            background-color: black;
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
 
         #installBtn {
-            display:none;
-            position:fixed;
-            top:20px;
-            right:20px;
-            padding:10px 15px;
-            background:green;
-            color:white;
-            border:none;
-            border-radius:5px;
-            cursor:pointer;
-            z-index:999;
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        nav {
+            text-align: center;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .project-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        fieldset {
+            width: 300px;
+            background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46));
+            border-radius: 10px;
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        input, textarea {
+            width: 250px;
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            cursor: pointer;
+        }
+
+        button:active {
+            background-color: rgb(88, 106, 103);
         }
     </style>
 </head>
 
 <body>
 
-<!-- ✅ INSTALL BUTTON (WHAT YOU WANTED) -->
+<!-- INSTALL BUTTON -->
 <button id="installBtn">Install App</button>
 
-<nav style="text-align:center; cursor:pointer">
+<nav>
     <li>HOME | ABOUT | PROJECTS | CONTACT US</li>
 </nav>
 
-<h1 style="text-align:center;line-height:10px">portfolio</h1>
+<h1 style="text-align:center;">Portfolio</h1>
 
-<h3>
+<h3 style="text-align:center;">
     <span style="color:rgb(87,53,136)">I'm Your Name</span>
 </h3>
 
-<blockquote>HTML | CSS | Java | SpringBoot</blockquote>
+<blockquote style="text-align:center;">
+    HTML | CSS | Java | SpringBoot
+</blockquote>
 
 <h4><u>About Me</u></h4>
-    <p>Lorem ipsum dolor, sit amet consectetur <q>adipisicing elit.</q> <span style =color:red>Aliquam rerum labore esse fugit.</span>
-       Voluptate, quam maxime? Deleniti esse, earum quisquam temporibus ab illo similique voluptatum tempora,
-       voluptate fugit rem reprehenderit.</p>
+<p>
+    Lorem ipsum dolor sit amet consectetur <q>adipisicing elit.</q>
+    <span style="color:red;">Aliquam rerum labore esse fugit.</span>
+    Voluptate, quam maxime?
+</p>
 
 <h4><u>Projects</u></h4>
 
@@ -64,72 +109,54 @@
 
 <br><br>
 
-    <div class="projet" style="
-  display: flex;">
-    
-    <fieldset style=" background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
-    ";>
-        <h5>project 1</h5>
-   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
-        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
-        Molestiae.</p> <br> <br>
+<div class="project-container">
 
-        Note: The main languages focus on this project are<br><br>
+    <fieldset>
+        <h5>Project 1</h5>
+        <p>Sample project description...</p>
 
-                 HTML <meter value="100" max="100"></meter>
-                 CSS  <meter value="100" max="100"></meter>
-                 Java <meter value="50" max="100"></meter>
+        HTML <meter value="100" max="100"></meter><br>
+        CSS <meter value="100" max="100"></meter><br>
+        Java <meter value="50" max="100"></meter>
     </fieldset>
 
-   
-    <fieldset style ="background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
-    ";>
-         <h5>project 2</h5>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
-        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
-        Molestiae.</p><br><br>
+    <fieldset>
+        <h5>Project 2</h5>
+        <p>Sample project description...</p>
 
-        Note: The main languages focus on this project are<br><br>
-
-                 HTML <meter value="100" max="100"></meter>
-                 CSS  <meter value="100" max="100"></meter>
-                 Java  <meter value="50" max="100"></meter>
+        HTML <meter value="100" max="100"></meter><br>
+        CSS <meter value="100" max="100"></meter><br>
+        Java <meter value="50" max="100"></meter>
     </fieldset>
 
-   
-    <fieldset style ="background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
-    ";>
-         <h5>project 3</h5>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
-        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
-        Molestiae.</p> <br> <br>
+    <fieldset>
+        <h5>Project 3</h5>
+        <p>Sample project description...</p>
 
-        Note: The main languages focus on this project are<br><br>
-
-                 HTML <meter value="100" max="100"></meter>
-                 CSS  <meter value="100" max="100"></meter>
-                 Java  <meter value="50" max="100"></meter>
+        HTML <meter value="100" max="100"></meter><br>
+        CSS <meter value="100" max="100"></meter><br>
+        Java <meter value="50" max="100"></meter>
     </fieldset>
-    </div><br><br>
-<h2 style="text-align:center;">Contact Form</h2>
-
-<div style="text-align:center;">
-
-    <input type="text" id="name" placeholder="Name"><br><br>
-    <input type="email" id="email" placeholder="Email"><br><br>
-    <textarea id="message" placeholder="Message"></textarea><br><br>
-
-    <button onclick="submitForm()">Send</button>
 
 </div>
 
+<!-- CONTACT -->
+<h2 style="text-align:center;">Contact Form</h2>
+
+<div class="contact">
+
+    <input type="text" id="name" placeholder="Name"><br>
+    <input type="email" id="email" placeholder="Email"><br>
+    <textarea id="message" placeholder="Message"></textarea><br>
+
+    <button onclick="submitForm()">Send</button>
+</div>
+
+<!-- SCRIPTS -->
 <script>
 let deferredPrompt;
 
-// Step 1: browser says app is installable
+// PWA install trigger
 window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
@@ -137,7 +164,7 @@ window.addEventListener("beforeinstallprompt", (e) => {
     document.getElementById("installBtn").style.display = "block";
 });
 
-// Step 2: user clicks install button
+// install button click
 document.getElementById("installBtn").addEventListener("click", async () => {
 
     if (!deferredPrompt) {
@@ -145,10 +172,8 @@ document.getElementById("installBtn").addEventListener("click", async () => {
         return;
     }
 
-    // Step 3: show browser install popup
     deferredPrompt.prompt();
 
-    // Step 4: wait user response
     const choice = await deferredPrompt.userChoice;
 
     if (choice.outcome === "accepted") {
@@ -159,6 +184,11 @@ document.getElementById("installBtn").addEventListener("click", async () => {
 
     deferredPrompt = null;
 });
+
+// dummy submit function
+function submitForm() {
+    alert("Message sent!");
+}
 </script>
 
 </body>
