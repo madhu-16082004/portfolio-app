@@ -1,111 +1,118 @@
-attach to this code <!DOCTYPE html>
-<html lang="en">
-<head>
+<!DOCTYPE html>
+<head lan="en">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport",content=width="device-width",initialscale="1.0">
     <title>Portfolio</title>
-
-    <link rel="manifest" href="manifest.json">
 </head>
+<body style="color:white; background-color:black";>
 
-<body style="color:white; background-color:black;">
+    <nav style ="text-align:center; cursor:pointer">
+        <li>HOME | ABOUT | PROJECTS | CONTACT US</li>
+    </nav>
 
-<!-- INSTALL BUTTON -->
-<button id="installBtn" style="position:fixed; top:10px; right:10px;">
-    Install App
-</button>
+    <h1 style = text-align:center;line-height:10px>portfolio</h1>
+    <h3><span style=color:rgb(87,53,136)>I'm Your Name</span></h3>
+    <blockquote>HTML | CSS | Java | SpringBoot</blockquote>
 
-<nav style="text-align:center; cursor:pointer">
-    <li>HOME | ABOUT | PROJECTS | CONTACT US</li>
-</nav>
+    <h4><u>About Me</u></h4>
+    <p>Lorem ipsum dolor, sit amet consectetur <q>adipisicing elit.</q> <span style =color:red>Aliquam rerum labore esse fugit.</span>
+       Voluptate, quam maxime? Deleniti esse, earum quisquam temporibus ab illo similique voluptatum tempora,
+       voluptate fugit rem reprehenderit.</p>
 
-<h1 style="text-align:center;line-height:10px">portfolio</h1>
+    <h4><u>Projects</u></h4>
+    
+    <select>
+        <optgroup label="select">
+            <option>
+                project 1
+            </option>
+            <option>
+                project 2
+            </option>
+            <option>
+                project 3
+            </option>
+        </optgroup>
+    </select><br><br>
+    
 
-<h3><span style="color:rgb(87,53,136)">I'm Your Name</span></h3>
+    <div class="projet" style="
+  display: flex;">
+    
+    <fieldset style=" background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
+    ";>
+        <h5>project 1</h5>
+   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
+        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
+        Molestiae.</p> <br> <br>
 
-<blockquote>HTML | CSS | Java | SpringBoot</blockquote>
+        Note: The main languages focus on this project are<br><br>
 
-<h4><u>About Me</u></h4>
+                 HTML <meter value="100" max="100"></meter>
+                 CSS  <meter value="100" max="100"></meter>
+                 Java <meter value="50" max="100"></meter>
+    </fieldset>
 
-<p>
-Lorem ipsum dolor sit amet consectetur <q>adipisicing elit.</q>
-<span style="color:red">Aliquam rerum labore esse fugit.</span>
-</p>
+   
+    <fieldset style ="background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
+    ";>
+         <h5>project 2</h5>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
+        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
+        Molestiae.</p><br><br>
 
-<h4><u>Projects</u></h4>
+        Note: The main languages focus on this project are<br><br>
 
-<!-- (your project section unchanged) -->
+                 HTML <meter value="100" max="100"></meter>
+                 CSS  <meter value="100" max="100"></meter>
+                 Java  <meter value="50" max="100"></meter>
+    </fieldset>
 
-<hr>
+   
+    <fieldset style ="background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
+    ";>
+         <h5>project 3</h5>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
+        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
+        Molestiae.</p> <br> <br>
 
-<h3><u>Contact Us</u></h3>
+        Note: The main languages focus on this project are<br><br>
 
-<div style="text-align:center">
+                 HTML <meter value="100" max="100"></meter>
+                 CSS  <meter value="100" max="100"></meter>
+                 Java  <meter value="50" max="100"></meter>
+    </fieldset>
+    </div><br><br>
 
-    <input id="name" type="text" placeholder="Enter name"><br><br>
-    <input id="email" type="email" placeholder="Enter email"><br><br>
-    <input id="phone" type="number" placeholder="Enter number"><br><br>
-    <textarea id="message" placeholder="Message"></textarea><br><br>
+    
+    <nav class="cus">
+        <caption><u>Contact Us</u></caption>
+        <br><br>
+        <input type="name" placeholder="Enter name" required><br><br>
+        <input type="email" placeholder="Enter Email" required><br><br>
+        <input type="number" placeholder="Enter Contact number" optional><br><br>
+        <input type="message"placeholder="write your message" style="resize: none;"><br><br>
+        <details>
+            <summary>
+                click the arrow to submit detail
+            </summary><br>
+            <button>send</button>
+        </details>
 
-    <button onclick="sendData()">Send</button>
-</div>
-
-<script>
-/* =========================
-   SEND DATA TO BACKEND
-========================= */
-async function sendData() {
-
-    const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        phone: document.getElementById("phone").value,
-        message: document.getElementById("message").value
-    };
-
-    const response = await fetch("http://localhost:8080/api/contact", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
-
-    if (response.ok) {
-        alert("Message sent successfully!");
-    } else {
-        alert("Failed to send message");
-    }
-}
-
-
-/* =========================
-   PWA INSTALL BUTTON
-========================= */
-let deferredPrompt;
-const installBtn = document.getElementById("installBtn");
-
-window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installBtn.style.display = "block";
-});
-
-installBtn.addEventListener("click", async () => {
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        await deferredPrompt.userChoice;
-        deferredPrompt = null;
-    }
-});
-</script>
-
-<script>
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js");
-}
-</script>
-
+        <style>
+            button:active{
+                background-color: rgb(88, 106, 103);
+            }
+        </style>
+        
+    </nav>
+    
+    <style>
+        .cus{
+            text-align: center;
+        }
+    </style>
 </body>
-</html>
-
