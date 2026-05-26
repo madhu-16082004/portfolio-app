@@ -1,136 +1,167 @@
 <!DOCTYPE html>
-<head lan="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport",content=width="device-width",initialscale="1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Portfolio</title>
-	<link rel="manifest" href="manifest.json">
-	<meta name="theme-color" content="#000000">
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+
+    <style>
+        body {
+            color: white;
+            background-color: black;
+            font-family: Arial, sans-serif;
+        }
+
+        #installBtn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        nav {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .projects {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        fieldset {
+            padding: 10px;
+        }
+    </style>
 </head>
-<body style="color:white; background-color:black";>
 
-    <nav style ="text-align:center; cursor:pointer">
-        <li>HOME | ABOUT | PROJECTS | CONTACT US</li>
-    </nav>
+<body>
 
-    <h1 style = text-align:center;line-height:10px>portfolio</h1>
-    <h3><span style=color:rgb(87,53,136)>I'm Your Name</span></h3>
-    <blockquote>HTML | CSS | Java | SpringBoot</blockquote>
+<!-- INSTALL BUTTON -->
+<button id="installBtn">Install App</button>
 
-    <h4><u>About Me</u></h4>
-    <p>Lorem ipsum dolor, sit amet consectetur <q>adipisicing elit.</q> <span style =color:red>Aliquam rerum labore esse fugit.</span>
-       Voluptate, quam maxime? Deleniti esse, earum quisquam temporibus ab illo similique voluptatum tempora,
-       voluptate fugit rem reprehenderit.</p>
+<nav>
+    HOME | ABOUT | PROJECTS | CONTACT
+</nav>
 
-    <h4><u>Projects</u></h4>
-    
-    <select>
-        <optgroup label="select">
-            <option>
-                project 1
-            </option>
-            <option>
-                project 2
-            </option>
-            <option>
-                project 3
-            </option>
-        </optgroup>
-    </select><br><br>
-    
+<h1 style="text-align:center;">Portfolio</h1>
 
-    <div class="projet" style="
-  display: flex;">
-    
-    <fieldset style=" background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
-    ";>
-        <h5>project 1</h5>
-   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
-        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
-        Molestiae.</p> <br> <br>
+<h3 style="text-align:center;">
+    <span style="color:rgb(87,53,136)">I'm Your Name</span>
+</h3>
 
-        Note: The main languages focus on this project are<br><br>
+<blockquote style="text-align:center;">
+    HTML | CSS | Java | Spring Boot
+</blockquote>
 
-                 HTML <meter value="100" max="100"></meter>
-                 CSS  <meter value="100" max="100"></meter>
-                 Java <meter value="50" max="100"></meter>
+<h2>About Me</h2>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+<h2>Projects</h2>
+
+<select>
+    <option>Project 1</option>
+    <option>Project 2</option>
+    <option>Project 3</option>
+</select>
+
+<br><br>
+
+<div class="projects">
+
+    <fieldset>
+        <h5>Project 1</h5>
+        <p>Sample project</p>
     </fieldset>
 
-   
-    <fieldset style ="background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
-    ";>
-         <h5>project 2</h5>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
-        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
-        Molestiae.</p><br><br>
-
-        Note: The main languages focus on this project are<br><br>
-
-                 HTML <meter value="100" max="100"></meter>
-                 CSS  <meter value="100" max="100"></meter>
-                 Java  <meter value="50" max="100"></meter>
+    <fieldset>
+        <h5>Project 2</h5>
+        <p>Sample project</p>
     </fieldset>
 
-   
-    <fieldset style ="background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
-    ";>
-         <h5>project 3</h5>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
-        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
-        Molestiae.</p> <br> <br>
-
-        Note: The main languages focus on this project are<br><br>
-
-                 HTML <meter value="100" max="100"></meter>
-                 CSS  <meter value="100" max="100"></meter>
-                 Java  <meter value="50" max="100"></meter>
+    <fieldset>
+        <h5>Project 3</h5>
+        <p>Sample project</p>
     </fieldset>
-    </div><br><br>
-    
-	<h2 style="text-align:center;">Contact Form</h2>
 
-	<form id="contactForm" style="text-align:center;">
+</div>
 
-	  <input type="text" id="name" placeholder="Name" required><br><br>
+<br>
 
-	  <input type="email" id="email" placeholder="Email" required><br><br>
+<h2 style="text-align:center;">Contact Form</h2>
 
-	  <textarea id="message" placeholder="Message" required style="resize:none;"></textarea><br><br>
+<div style="text-align:center;">
+    <input type="text" id="name" placeholder="Name"><br><br>
+    <input type="email" id="email" placeholder="Email"><br><br>
+    <textarea id="message" placeholder="Message"></textarea><br><br>
 
-	 <button type="button" onclick="submitForm()">Send</button>
+    <button onclick="submitForm()">Send</button>
+</div>
 
-	</form>
+<!-- ================= PWA INSTALL ================= -->
+<script>
+let deferredPrompt;
 
-	<script>
-	function submitForm() {
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
 
-	    const payload = {
-	        name: document.getElementById("name").value,
-	        email: document.getElementById("email").value,
-	        message: document.getElementById("message").value
-	    };
+    document.getElementById("installBtn").style.display = "block";
+});
 
-	    console.log("SENDING:", payload);
+document.getElementById("installBtn").addEventListener("click", async () => {
+    if (!deferredPrompt) return;
 
-	    fetch("http://localhost:8080/api/contact", {
-	        method: "POST",
-	        headers: {
-	            "Content-Type": "application/json"
-	        },
-	        body: JSON.stringify(payload)
-	    })
-	    .then(res => res.text())
-	    .then(data => {
-	        alert(data);
-	    })
-	    .catch(err => console.log(err));
-	}
-	
-	if ("serviceWorker" in navigator) {
-	  navigator.serviceWorker.register("/sw.js")
-	    .then(() => console.log("Service Worker Registered"));
-	}
-	</script>
+    deferredPrompt.prompt();
+
+    await deferredPrompt.userChoice;
+
+    deferredPrompt = null;
+});
+</script>
+
+<!-- ================= SERVICE WORKER ================= -->
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js")
+        .then(() => console.log("SW registered"));
+}
+</script>
+
+<!-- ================= CONTACT FORM ================= -->
+<script>
+function submitForm() {
+
+    const payload = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+    };
+
+    fetch("/api/contact", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.text())
+    .then(data => alert(data))
+    .catch(err => console.log(err));
+}
+</script>
+
 </body>
+</html>
