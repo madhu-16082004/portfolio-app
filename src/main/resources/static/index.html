@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<head lan="en">
+    <meta charset="UTF-8">
+    <meta name="viewport",content=width="device-width",initialscale="1.0">
+    <title>Portfolio</title>
+	<link rel="manifest" href="manifest.json">
+	<meta name="theme-color" content="#000000">
+</head>
+<body style="color:white; background-color:black";>
+
+    <nav style ="text-align:center; cursor:pointer">
+        <li>HOME | ABOUT | PROJECTS | CONTACT US</li>
+    </nav>
+
+    <h1 style = text-align:center;line-height:10px>portfolio</h1>
+    <h3><span style=color:rgb(87,53,136)>I'm Your Name</span></h3>
+    <blockquote>HTML | CSS | Java | SpringBoot</blockquote>
+
+    <h4><u>About Me</u></h4>
+    <p>Lorem ipsum dolor, sit amet consectetur <q>adipisicing elit.</q> <span style =color:red>Aliquam rerum labore esse fugit.</span>
+       Voluptate, quam maxime? Deleniti esse, earum quisquam temporibus ab illo similique voluptatum tempora,
+       voluptate fugit rem reprehenderit.</p>
+
+    <h4><u>Projects</u></h4>
+    
+    <select>
+        <optgroup label="select">
+            <option>
+                project 1
+            </option>
+            <option>
+                project 2
+            </option>
+            <option>
+                project 3
+            </option>
+        </optgroup>
+    </select><br><br>
+    
+
+    <div class="projet" style="
+  display: flex;">
+    
+    <fieldset style=" background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
+    ";>
+        <h5>project 1</h5>
+   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
+        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
+        Molestiae.</p> <br> <br>
+
+        Note: The main languages focus on this project are<br><br>
+
+                 HTML <meter value="100" max="100"></meter>
+                 CSS  <meter value="100" max="100"></meter>
+                 Java <meter value="50" max="100"></meter>
+    </fieldset>
+
+   
+    <fieldset style ="background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
+    ";>
+         <h5>project 2</h5>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
+        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
+        Molestiae.</p><br><br>
+
+        Note: The main languages focus on this project are<br><br>
+
+                 HTML <meter value="100" max="100"></meter>
+                 CSS  <meter value="100" max="100"></meter>
+                 Java  <meter value="50" max="100"></meter>
+    </fieldset>
+
+   
+    <fieldset style ="background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
+    ";>
+         <h5>project 3</h5>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
+        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
+        Molestiae.</p> <br> <br>
+
+        Note: The main languages focus on this project are<br><br>
+
+                 HTML <meter value="100" max="100"></meter>
+                 CSS  <meter value="100" max="100"></meter>
+                 Java  <meter value="50" max="100"></meter>
+    </fieldset>
+    </div><br><br>
+
+    
+	<h2 style="text-align:center;">Contact Form</h2>
+
+	<form id="contactForm" style="text-align:center;">
+
+	  <input type="text" id="name" placeholder="Name" required><br><br>
+
+	  <input type="email" id="email" placeholder="Email" required><br><br>
+
+	  <textarea id="message" placeholder="Message" required style="resize:none;"></textarea><br><br>
+
+	 <button type="button" onclick="submitForm()">Send</button>
+
+	</form>
+
+	<script>
+	function submitForm() {
+
+	    const payload = {
+	        name: document.getElementById("name").value,
+	        email: document.getElementById("email").value,
+	        message: document.getElementById("message").value
+	    };
+
+	    console.log("SENDING:", payload);
+
+	    fetch("http://localhost:8080/api/contact", {
+	        method: "POST",
+	        headers: {
+	            "Content-Type": "application/json"
+	        },
+	        body: JSON.stringify(payload)
+	    })
+	    .then(res => res.text())
+	    .then(data => {
+	        alert(data);
+	    })
+	    .catch(err => console.log(err));
+	}
+	</script>
+</body>
