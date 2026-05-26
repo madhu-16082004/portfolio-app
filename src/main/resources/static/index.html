@@ -52,7 +52,7 @@ Lorem ipsum dolor sit amet consectetur <q>adipisicing elit.</q>
 
 <script>
 /* =========================
-   SEND DATA TO BACKEND (FIXED)
+   SEND DATA TO BACKEND
 ========================= */
 async function sendData() {
 
@@ -63,7 +63,7 @@ async function sendData() {
         message: document.getElementById("message").value
     };
 
-    const response = await fetch("https://portfolio-app-3-2nn4.onrender.com/api/contact", {
+    const response = await fetch("http://localhost:8080/api/contact", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -77,9 +77,8 @@ async function sendData() {
         alert("Failed to send message");
     }
 }
-</script>
 
-<script>
+
 /* =========================
    PWA INSTALL BUTTON
 ========================= */
@@ -109,3 +108,5 @@ if ("serviceWorker" in navigator) {
 
 </body>
 </html>
+
+i need this exactly add those updationg here dont change any thing update and provide this code exactly withthe updation
