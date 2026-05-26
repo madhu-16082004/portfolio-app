@@ -1,7 +1,3 @@
-self.addEventListener("install", (event) => {
-  console.log("Service Worker Installed");
-});
-
-self.addEventListener("fetch", (event) => {
-  // basic offline support
+self.addEventListener("install", () => {
+  console.log("SW installed");
 });
