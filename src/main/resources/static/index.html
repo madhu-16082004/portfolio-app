@@ -3,8 +3,14 @@
     <meta charset="UTF-8">
     <meta name="viewport",content=width="device-width",initialscale="1.0">
     <title>Portfolio</title>
+    
+    <link rel="manifest" href="manifest.json">
 </head>
 <body style="color:white; background-color:black";>
+
+<button id="installBtn" style="position:fixed; top:10px; right:10px;">
+    Install App
+</button>
 
     <nav style ="text-align:center; cursor:pointer">
         <li>HOME | ABOUT | PROJECTS | CONTACT US</li>
@@ -95,24 +101,61 @@
         <input type="email" placeholder="Enter Email" required><br><br>
         <input type="number" placeholder="Enter Contact number" optional><br><br>
         <input type="message"placeholder="write your message" style="resize: none;"><br><br>
-        <details>
-            <summary>
-                click the arrow to submit detail
-            </summary><br>
-            <button>send</button>
-        </details>
-
-        <style>
-            button:active{
-                background-color: rgb(88, 106, 103);
-            }
-        </style>
-        
+          <button onclick="sendData()">Send</button>
     </nav>
     
-    <style>
-        .cus{
-            text-align: center;
-        }
-    </style>
+ <script>
+     async function sendData() {
+
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        message: document.getElementById("message").value
+    };
+
+    const response = await fetch("https://portfolio-app-3-2nn4.onrender.com/api/contact", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+        alert("Message sent successfully!");
+    } else {
+        alert("Failed to send message");
+    }
+}
+</script>
+
+<script>
+/* =========================
+   PWA INSTALL BUTTON
+========================= */
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.style.display = "block";
+});
+
+installBtn.addEventListener("click", async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
+    }
+});
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
+}
+</script>
+</html>
 </body>
