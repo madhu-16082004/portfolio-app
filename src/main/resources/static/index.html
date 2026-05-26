@@ -99,65 +99,6 @@ Lorem ipsum dolor sit amet consectetur adipisicing elit.
 
 </div>
 
-<!-- ================= PWA INSTALL LOGIC ================= -->
-<script>
-let deferredPrompt;
-
-// Detect install availability
-window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-
-    // show button
-    document.getElementById("installBtn").style.display = "block";
-});
-
-// install click
-document.getElementById("installBtn").addEventListener("click", async () => {
-    if (!deferredPrompt) return;
-
-    deferredPrompt.prompt();
-
-    const result = await deferredPrompt.userChoice;
-
-    if (result.outcome === "accepted") {
-        console.log("App Installed");
-    }
-
-    deferredPrompt = null;
-});
-</script>
-
-<!-- ================= SERVICE WORKER ================= -->
-<script>
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/sw.js")
-    .then(() => console.log("SW registered"));
-}
-</script>
-
-<!-- ================= CONTACT FORM ================= -->
-<script>
-function submitForm() {
-    const payload = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value
-    };
-
-    fetch("/api/contact", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-    })
-    .then(res => res.text())
-    .then(data => alert(data))
-    .catch(err => console.log(err));
-}
-    <button id="installBtn" style="display:none;">Install App</button>
-
 <script>
 let deferredPrompt;
 
