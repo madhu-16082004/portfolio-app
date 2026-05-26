@@ -1,134 +1,151 @@
 <!DOCTYPE html>
-<head lan="en">
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport",content=width="device-width",initialscale="1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Portfolio</title>
-	<link rel="manifest" href="manifest.json">
-	<meta name="theme-color" content="#000000">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+
+    <style>
+        body {
+            color: white;
+            background-color: black;
+        }
+
+        #installBtn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
 </head>
-<body style="color:white; background-color:black";>
 
-    <nav style ="text-align:center; cursor:pointer">
-        <li>HOME | ABOUT | PROJECTS | CONTACT US</li>
-    </nav>
+<body>
 
-    <h1 style = text-align:center;line-height:10px>portfolio</h1>
-    <h3><span style=color:rgb(87,53,136)>I'm Your Name</span></h3>
-    <blockquote>HTML | CSS | Java | SpringBoot</blockquote>
+<!-- INSTALL BUTTON (CORRECT PLACE) -->
+<button id="installBtn">Install App</button>
 
-    <h4><u>About Me</u></h4>
-    <p>Lorem ipsum dolor, sit amet consectetur <q>adipisicing elit.</q> <span style =color:red>Aliquam rerum labore esse fugit.</span>
-       Voluptate, quam maxime? Deleniti esse, earum quisquam temporibus ab illo similique voluptatum tempora,
-       voluptate fugit rem reprehenderit.</p>
+<nav style="text-align:center;">
+    <li>HOME | ABOUT | PROJECTS | CONTACT US</li>
+</nav>
 
-    <h4><u>Projects</u></h4>
-    
-    <select>
-        <optgroup label="select">
-            <option>
-                project 1
-            </option>
-            <option>
-                project 2
-            </option>
-            <option>
-                project 3
-            </option>
-        </optgroup>
-    </select><br><br>
-    
+<h1 style="text-align:center;">Portfolio</h1>
 
-    <div class="projet" style="
-  display: flex;">
-    
-    <fieldset style=" background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
-    ";>
-        <h5>project 1</h5>
-   <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
-        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
-        Molestiae.</p> <br> <br>
+<h3 style="text-align:center;">
+    <span style="color:rgb(87,53,136)">I'm Your Name</span>
+</h3>
 
-        Note: The main languages focus on this project are<br><br>
+<blockquote style="text-align:center;">
+    HTML | CSS | Java | SpringBoot
+</blockquote>
 
-                 HTML <meter value="100" max="100"></meter>
-                 CSS  <meter value="100" max="100"></meter>
-                 Java <meter value="50" max="100"></meter>
+<h4><u>About Me</u></h4>
+<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+<h4><u>Projects</u></h4>
+
+<select>
+    <option>project 1</option>
+    <option>project 2</option>
+    <option>project 3</option>
+</select>
+
+<br><br>
+
+<div style="display:flex; gap:10px;">
+
+    <fieldset>
+        <h5>Project 1</h5>
+        <p>Sample project</p>
     </fieldset>
 
-   
-    <fieldset style ="background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
-    ";>
-         <h5>project 2</h5>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
-        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
-        Molestiae.</p><br><br>
-
-        Note: The main languages focus on this project are<br><br>
-
-                 HTML <meter value="100" max="100"></meter>
-                 CSS  <meter value="100" max="100"></meter>
-                 Java  <meter value="50" max="100"></meter>
+    <fieldset>
+        <h5>Project 2</h5>
+        <p>Sample project</p>
     </fieldset>
 
-   
-    <fieldset style ="background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46))
-    ";>
-         <h5>project 3</h5>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-    Cumque, assumenda, expedita reiciendis doloribus aspernatur illum rerum velit optio soluta,
-        exercitationem ducimus? Sit voluptatum nisi mollitia necessitatibus architecto, accusamus voluptatem.
-        Molestiae.</p> <br> <br>
-
-        Note: The main languages focus on this project are<br><br>
-
-                 HTML <meter value="100" max="100"></meter>
-                 CSS  <meter value="100" max="100"></meter>
-                 Java  <meter value="50" max="100"></meter>
+    <fieldset>
+        <h5>Project 3</h5>
+        <p>Sample project</p>
     </fieldset>
-    </div><br><br>
 
-    
-	<h2 style="text-align:center;">Contact Form</h2>
+</div>
 
-	<form id="contactForm" style="text-align:center;">
+<br>
 
-	  <input type="text" id="name" placeholder="Name" required><br><br>
+<h2 style="text-align:center;">Contact Form</h2>
 
-	  <input type="email" id="email" placeholder="Email" required><br><br>
+<div style="text-align:center;">
+    <input type="text" id="name" placeholder="Name"><br><br>
+    <input type="email" id="email" placeholder="Email"><br><br>
+    <textarea id="message" placeholder="Message"></textarea><br><br>
 
-	  <textarea id="message" placeholder="Message" required style="resize:none;"></textarea><br><br>
+    <button onclick="submitForm()">Send</button>
+</div>
 
-	 <button type="button" onclick="submitForm()">Send</button>
-
-	</form>
-
-	<script>
-<button id="installBtn" style="display:none;">
-  Install App
-</button>
-
+<!-- ================= PWA SCRIPT ================= -->
 <script>
 let deferredPrompt;
 
 window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
+    e.preventDefault();
+    deferredPrompt = e;
 
-  document.getElementById("installBtn").style.display = "block";
+    document.getElementById("installBtn").style.display = "block";
 });
 
 document.getElementById("installBtn").addEventListener("click", async () => {
-  deferredPrompt.prompt();
-  const choice = await deferredPrompt.userChoice;
+    if (!deferredPrompt) return;
 
-  if (choice.outcome === "accepted") {
-    console.log("App installed");
-  }
+    deferredPrompt.prompt();
 
-  deferredPrompt = null;
+    const choice = await deferredPrompt.userChoice;
+
+    if (choice.outcome === "accepted") {
+        console.log("App installed");
+    }
+
+    deferredPrompt = null;
 });
 </script>
-	
+
+<!-- ================= SERVICE WORKER ================= -->
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js")
+    .then(() => console.log("SW registered"));
+}
+</script>
+
+<!-- ================= CONTACT FORM ================= -->
+<script>
+function submitForm() {
+    const payload = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+    };
+
+    fetch("/api/contact", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(res => res.text())
+    .then(data => alert(data));
+}
+</script>
+
 </body>
+</html>
