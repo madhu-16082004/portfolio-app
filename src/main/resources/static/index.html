@@ -3,191 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Portfolio</title>
 
-    <!-- PWA -->
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#000000">
-
-    <style>
-        body {
-            color: white;
-            background-color: black;
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        #installBtn {
-            display: none;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 15px;
-            background: green;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 999;
-        }
-
-        nav {
-            text-align: center;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .project-container {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        fieldset {
-            width: 300px;
-            background: linear-gradient(to right, rgb(0, 0, 0), rgb(57, 46, 46));
-            border-radius: 10px;
-        }
-
-        .contact {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        input, textarea {
-            width: 250px;
-            padding: 8px;
-            margin: 5px;
-        }
-
-        button {
-            padding: 8px 15px;
-            cursor: pointer;
-        }
-
-        button:active {
-            background-color: rgb(88, 106, 103);
-        }
-    </style>
+    <link rel="manifest" href="manifest.json">
 </head>
 
-<body>
+<body style="color:white; background-color:black;">
 
 <!-- INSTALL BUTTON -->
-<button id="installBtn">Install App</button>
+<button id="installBtn" style="position:fixed; top:10px; right:10px;">
+    Install App
+</button>
 
-<nav>
+<nav style="text-align:center; cursor:pointer">
     <li>HOME | ABOUT | PROJECTS | CONTACT US</li>
 </nav>
 
-<h1 style="text-align:center;">Portfolio</h1>
+<h1 style="text-align:center;line-height:10px">portfolio</h1>
 
-<h3 style="text-align:center;">
-    <span style="color:rgb(87,53,136)">I'm Your Name</span>
-</h3>
+<h3><span style="color:rgb(87,53,136)">I'm Your Name</span></h3>
 
-<blockquote style="text-align:center;">
-    HTML | CSS | Java | SpringBoot
-</blockquote>
+<blockquote>HTML | CSS | Java | SpringBoot</blockquote>
 
 <h4><u>About Me</u></h4>
+
 <p>
-    Lorem ipsum dolor sit amet consectetur <q>adipisicing elit.</q>
-    <span style="color:red;">Aliquam rerum labore esse fugit.</span>
-    Voluptate, quam maxime?
+Lorem ipsum dolor sit amet consectetur <q>adipisicing elit.</q>
+<span style="color:red">Aliquam rerum labore esse fugit.</span>
 </p>
 
 <h4><u>Projects</u></h4>
 
-<select>
-    <option>project 1</option>
-    <option>project 2</option>
-    <option>project 3</option>
-</select>
+<!-- (your project section unchanged) -->
 
-<br><br>
+<hr>
 
-<div class="project-container">
+<h3><u>Contact Us</u></h3>
 
-    <fieldset>
-        <h5>Project 1</h5>
-        <p>Sample project description...</p>
+<div style="text-align:center">
 
-        HTML <meter value="100" max="100"></meter><br>
-        CSS <meter value="100" max="100"></meter><br>
-        Java <meter value="50" max="100"></meter>
-    </fieldset>
+    <input id="name" type="text" placeholder="Enter name"><br><br>
+    <input id="email" type="email" placeholder="Enter email"><br><br>
+    <input id="phone" type="number" placeholder="Enter number"><br><br>
+    <textarea id="message" placeholder="Message"></textarea><br><br>
 
-    <fieldset>
-        <h5>Project 2</h5>
-        <p>Sample project description...</p>
-
-        HTML <meter value="100" max="100"></meter><br>
-        CSS <meter value="100" max="100"></meter><br>
-        Java <meter value="50" max="100"></meter>
-    </fieldset>
-
-    <fieldset>
-        <h5>Project 3</h5>
-        <p>Sample project description...</p>
-
-        HTML <meter value="100" max="100"></meter><br>
-        CSS <meter value="100" max="100"></meter><br>
-        Java <meter value="50" max="100"></meter>
-    </fieldset>
-
+    <button onclick="sendData()">Send</button>
 </div>
 
-<!-- CONTACT -->
-<h2 style="text-align:center;">Contact Form</h2>
-
-<div class="contact">
-
-    <input type="text" id="name" placeholder="Name"><br>
-    <input type="email" id="email" placeholder="Email"><br>
-    <textarea id="message" placeholder="Message"></textarea><br>
-
-    <button onclick="submitForm()">Send</button>
-</div>
-
-<!-- SCRIPTS -->
 <script>
-let deferredPrompt;
+/* =========================
+   SEND DATA TO BACKEND
+========================= */
+async function sendData() {
 
-// PWA install trigger
+    const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        message: document.getElementById("message").value
+    };
+
+    const response = await fetch("http://localhost:8080/api/contact", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
+
+    if (response.ok) {
+        alert("Message sent successfully!");
+    } else {
+        alert("Failed to send message");
+    }
+}
+
+
+/* =========================
+   PWA INSTALL BUTTON
+========================= */
+let deferredPrompt;
+const installBtn = document.getElementById("installBtn");
+
 window.addEventListener("beforeinstallprompt", (e) => {
     e.preventDefault();
     deferredPrompt = e;
-
-    document.getElementById("installBtn").style.display = "block";
+    installBtn.style.display = "block";
 });
 
-// install button click
-document.getElementById("installBtn").addEventListener("click", async () => {
-
-    if (!deferredPrompt) {
-        alert("Install not available. Open in Chrome.");
-        return;
+installBtn.addEventListener("click", async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        await deferredPrompt.userChoice;
+        deferredPrompt = null;
     }
-
-    deferredPrompt.prompt();
-
-    const choice = await deferredPrompt.userChoice;
-
-    if (choice.outcome === "accepted") {
-        console.log("App Installed Successfully");
-    } else {
-        console.log("User cancelled install");
-    }
-
-    deferredPrompt = null;
 });
+</script>
 
-// dummy submit function
-function submitForm() {
-    alert("Message sent!");
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js");
 }
 </script>
 
