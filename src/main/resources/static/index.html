@@ -105,28 +105,30 @@
 	</form>
 
 	<script>
-	function submitForm() {
+<button id="installBtn" style="display:none;">
+  Install App
+</button>
 
-	    const payload = {
-	        name: document.getElementById("name").value,
-	        email: document.getElementById("email").value,
-	        message: document.getElementById("message").value
-	    };
+<script>
+let deferredPrompt;
 
-	    console.log("SENDING:", payload);
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
 
-	    fetch("http://localhost:8080/api/contact", {
-	        method: "POST",
-	        headers: {
-	            "Content-Type": "application/json"
-	        },
-	        body: JSON.stringify(payload)
-	    })
-	    .then(res => res.text())
-	    .then(data => {
-	        alert(data);
-	    })
-	    .catch(err => console.log(err));
-	}
-	</script>
+  document.getElementById("installBtn").style.display = "block";
+});
+
+document.getElementById("installBtn").addEventListener("click", async () => {
+  deferredPrompt.prompt();
+  const choice = await deferredPrompt.userChoice;
+
+  if (choice.outcome === "accepted") {
+    console.log("App installed");
+  }
+
+  deferredPrompt = null;
+});
+</script>
+	
 </body>
