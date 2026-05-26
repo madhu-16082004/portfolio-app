@@ -156,6 +156,41 @@ function submitForm() {
     .then(data => alert(data))
     .catch(err => console.log(err));
 }
+    <button id="installBtn" style="display:none;">Install App</button>
+
+<script>
+let deferredPrompt;
+
+// Step 1: browser says app is installable
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    document.getElementById("installBtn").style.display = "block";
+});
+
+// Step 2: user clicks install button
+document.getElementById("installBtn").addEventListener("click", async () => {
+
+    if (!deferredPrompt) {
+        alert("Install not available. Open in Chrome.");
+        return;
+    }
+
+    // Step 3: show browser install popup
+    deferredPrompt.prompt();
+
+    // Step 4: wait user response
+    const choice = await deferredPrompt.userChoice;
+
+    if (choice.outcome === "accepted") {
+        console.log("App Installed Successfully");
+    } else {
+        console.log("User cancelled install");
+    }
+
+    deferredPrompt = null;
+});
 </script>
 
 </body>
