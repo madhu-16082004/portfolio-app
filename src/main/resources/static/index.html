@@ -34,6 +34,8 @@ Lorem ipsum dolor sit amet consectetur <q>adipisicing elit.</q>
 
 <h4><u>Projects</u></h4>
 
+<!-- (your project section unchanged) -->
+
 <hr>
 
 <h3><u>Contact Us</u></h3>
@@ -50,7 +52,7 @@ Lorem ipsum dolor sit amet consectetur <q>adipisicing elit.</q>
 
 <script>
 /* =========================
-   SEND DATA TO SPRING BOOT (FIXED)
+   SEND DATA TO BACKEND (FIXED)
 ========================= */
 async function sendData() {
 
@@ -61,30 +63,18 @@ async function sendData() {
         message: document.getElementById("message").value
     };
 
-    try {
-        const response = await fetch("https://portfolio-app-3-2nn4.onrender.com/api/contact", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
+    const response = await fetch("https://portfolio-app-3-2nn4.onrender.com/api/contact", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    });
 
-        if (response.ok) {
-            alert("✅ Message saved in database!");
-            
-            // clear form after success
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("phone").value = "";
-            document.getElementById("message").value = "";
-        } else {
-            alert("❌ Failed to save message");
-        }
-
-    } catch (error) {
-        console.error(error);
-        alert("❌ Backend not reachable");
+    if (response.ok) {
+        alert("Message sent successfully!");
+    } else {
+        alert("Failed to send message");
     }
 }
 </script>
@@ -112,7 +102,6 @@ installBtn.addEventListener("click", async () => {
 </script>
 
 <script>
-/* SERVICE WORKER */
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("sw.js");
 }
