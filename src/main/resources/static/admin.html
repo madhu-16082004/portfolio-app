@@ -118,7 +118,15 @@ async function loadData() {
         </tr>
     `;
 
+    // GET DELETED ROWS
+    let deletedIds = JSON.parse(localStorage.getItem("deletedRows")) || [];
+
     data.forEach(item => {
+
+        // SKIP DELETED ROWS
+        if(deletedIds.includes(item.id)){
+            return;
+        }
 
         let row = table.insertRow();
 
@@ -128,12 +136,12 @@ async function loadData() {
         row.insertCell(3).innerHTML = item.phone || "N/A";
         row.insertCell(4).innerHTML = item.message;
 
-        // CHECK BUTTON FOR EACH ROW
+        // CHECK BUTTON
         let checkCell = row.insertCell(5);
 
         let checkBtn = document.createElement("button");
 
-        checkBtn.innerHTML = "Check";
+        checkBtn.innerHTML = "✓ Check";
         checkBtn.className = "check-btn";
 
         checkBtn.onclick = function () {
@@ -141,16 +149,16 @@ async function loadData() {
             row.classList.toggle("checked-row");
 
             if(row.classList.contains("checked-row")){
-                checkBtn.innerHTML = "Checked";
+                checkBtn.innerHTML = "✓ Checked";
             }else{
-                checkBtn.innerHTML = "Check";
+                checkBtn.innerHTML = "✓ Check";
             }
 
         };
 
         checkCell.appendChild(checkBtn);
 
-        // DELETE BUTTON FOR EACH ROW
+        // DELETE BUTTON
         let deleteCell = row.insertCell(6);
 
         let deleteBtn = document.createElement("button");
@@ -159,7 +167,17 @@ async function loadData() {
         deleteBtn.className = "delete-btn";
 
         deleteBtn.onclick = function () {
+
+            // HIDE ROW
             row.remove();
+
+            // SAVE ID TO LOCAL STORAGE
+            deletedIds.push(item.id);
+
+            localStorage.setItem(
+                "deletedRows",
+                JSON.stringify(deletedIds)
+            );
         };
 
         deleteCell.appendChild(deleteBtn);
