@@ -118,12 +118,13 @@ async function loadData() {
         </tr>
     `;
 
-    // GET DELETED ROWS
+    // LOCAL STORAGE
     let deletedIds = JSON.parse(localStorage.getItem("deletedRows")) || [];
+    let checkedIds = JSON.parse(localStorage.getItem("checkedRows")) || [];
 
     data.forEach(item => {
 
-        // SKIP DELETED ROWS
+        // HIDE DELETED ROWS FOREVER
         if(deletedIds.includes(item.id)){
             return;
         }
@@ -141,19 +142,41 @@ async function loadData() {
 
         let checkBtn = document.createElement("button");
 
-        checkBtn.innerHTML = "Check";
+        // IF ALREADY CHECKED
+        if(checkedIds.includes(item.id)){
+
+            row.classList.add("checked-row");
+
+            checkBtn.innerHTML = "✓ Checked";
+
+            checkBtn.disabled = true;
+
+        }else{
+
+            checkBtn.innerHTML = "✓ Check";
+
+        }
+
         checkBtn.className = "check-btn";
 
         checkBtn.onclick = function () {
 
-            row.classList.toggle("checked-row");
+            // TURN GREEN
+            row.classList.add("checked-row");
 
-            if(row.classList.contains("checked-row")){
-                checkBtn.innerHTML = "Checked";
-            }else{
-                checkBtn.innerHTML = "Check";
-            }
+            // CHANGE BUTTON
+            checkBtn.innerHTML = "✓ Checked";
 
+            // DISABLE BUTTON
+            checkBtn.disabled = true;
+
+            // SAVE TO LOCAL STORAGE
+            checkedIds.push(item.id);
+
+            localStorage.setItem(
+                "checkedRows",
+                JSON.stringify(checkedIds)
+            );
         };
 
         checkCell.appendChild(checkBtn);
@@ -164,14 +187,15 @@ async function loadData() {
         let deleteBtn = document.createElement("button");
 
         deleteBtn.innerHTML = "Delete";
+
         deleteBtn.className = "delete-btn";
 
         deleteBtn.onclick = function () {
 
-            // HIDE ROW
+            // REMOVE ROW
             row.remove();
 
-            // SAVE ID TO LOCAL STORAGE
+            // SAVE DELETE
             deletedIds.push(item.id);
 
             localStorage.setItem(
