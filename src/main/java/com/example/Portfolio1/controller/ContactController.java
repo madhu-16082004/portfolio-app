@@ -24,6 +24,10 @@ public class ContactController {
 
         return "Saved Successfully";
 
+        @GetMapping("/contact")
+public java.util.List<Contact> getAllContacts() {
+    return service.getAll();
+}
         
     }
 }
