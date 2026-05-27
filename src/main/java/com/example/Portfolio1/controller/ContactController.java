@@ -23,5 +23,7 @@ public class ContactController {
         service.save(contact);
 
         return "Saved Successfully";
+
+        
     }
 }
