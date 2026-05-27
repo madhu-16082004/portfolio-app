@@ -4,110 +4,104 @@
     <title>Admin Panel - Messages</title>
 
     <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #000000, #1a1a1a);
-            color: white;
+
+        body{
+            background:black;
+            color:white;
+            font-family:Arial;
+            margin:0;
+            padding:20px;
         }
 
-        h1 {
-            margin-top: 30px;
-            font-size: 28px;
-            letter-spacing: 1px;
+        h1{
+            text-align:center;
+            color:cyan;
         }
 
-        .container {
-            width: 90%;
-            margin: auto;
+        button{
+            padding:10px 15px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            font-weight:bold;
         }
 
-        button {
-            margin-top: 20px;
-            padding: 12px 20px;
-            border: none;
-            background: #00c6ff;
-            color: black;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
+        .load-btn{
+            background:cyan;
+            color:black;
+            margin-bottom:20px;
         }
 
-        button:hover {
-            background: #00ffcc;
-            transform: scale(1.05);
+        .delete-btn{
+            background:red;
+            color:white;
         }
 
-        table {
-            width: 100%;
-            margin-top: 30px;
-            border-collapse: collapse;
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
+        .check-btn{
+            background:green;
+            color:white;
         }
 
-        th, td {
-            padding: 15px;
-            text-align: center;
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin-top:20px;
+            background:#111;
         }
 
-        th {
-            background: rgba(0, 198, 255, 0.3);
-            color: white;
-            font-size: 14px;
+        th{
+            background:cyan;
+            color:black;
+            padding:15px;
         }
 
-        tr {
-            transition: 0.3s;
+        td{
+            border:1px solid #333;
+            padding:12px;
+            text-align:center;
         }
 
-        tr:hover {
-            background: rgba(255,255,255,0.1);
+        tr:hover{
+            background:#222;
         }
 
-        td {
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        .checked{
+            background:darkgreen !important;
         }
 
-        .card {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            margin-top: 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        }
     </style>
 </head>
 
 <body>
 
-<div class="container">
+<h1>Contact Messages (Database View)</h1>
 
-    <h1>Contact Messages Dashboard</h1>
+<center>
+    <button class="load-btn" onclick="loadData()">
+        Load Messages
+    </button>
+</center>
 
-    <button onclick="loadData()">Load Messages</button>
+<table id="table">
 
-    <div class="card">
-        <table id="table">
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Message</th>
-            </tr>
-        </table>
-    </div>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Message</th>
+        <th>Check</th>
+        <th>Delete</th>
+    </tr>
 
-</div>
+</table>
 
 <script>
+
 async function loadData() {
 
     const res = await fetch("https://portfolio-app-3-2nn4.onrender.com/api/contact");
+
     const data = await res.json();
 
     let table = document.getElementById("table");
@@ -119,10 +113,13 @@ async function loadData() {
             <th>Email</th>
             <th>Phone</th>
             <th>Message</th>
+            <th>Check</th>
+            <th>Delete</th>
         </tr>
     `;
 
     data.forEach(item => {
+
         let row = table.insertRow();
 
         row.insertCell(0).innerHTML = item.id;
@@ -130,8 +127,37 @@ async function loadData() {
         row.insertCell(2).innerHTML = item.email;
         row.insertCell(3).innerHTML = item.phone || "N/A";
         row.insertCell(4).innerHTML = item.message;
+
+        // CHECK BUTTON
+        let checkCell = row.insertCell(5);
+
+        checkCell.innerHTML = `
+            <button class="check-btn">
+                ✓ Checked
+            </button>
+        `;
+
+        checkCell.onclick = function () {
+            row.classList.toggle("checked");
+        };
+
+        // DELETE BUTTON
+        let deleteCell = row.insertCell(6);
+
+        deleteCell.innerHTML = `
+            <button class="delete-btn">
+                Delete
+            </button>
+        `;
+
+        deleteCell.onclick = function () {
+            row.remove();
+        };
+
     });
+
 }
+
 </script>
 
 </body>
