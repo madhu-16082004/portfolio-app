@@ -65,7 +65,7 @@
             background:#222;
         }
 
-        .checked{
+        .checked-row{
             background:darkgreen !important;
         }
 
@@ -90,7 +90,7 @@
         <th>Email</th>
         <th>Phone</th>
         <th>Message</th>
-        <th>Check</th>
+        <th>Checked</th>
         <th>Delete</th>
     </tr>
 
@@ -113,7 +113,7 @@ async function loadData() {
             <th>Email</th>
             <th>Phone</th>
             <th>Message</th>
-            <th>Check</th>
+            <th>Checked</th>
             <th>Delete</th>
         </tr>
     `;
@@ -128,31 +128,41 @@ async function loadData() {
         row.insertCell(3).innerHTML = item.phone || "N/A";
         row.insertCell(4).innerHTML = item.message;
 
-        // CHECK BUTTON
+        // CHECK BUTTON FOR EACH ROW
         let checkCell = row.insertCell(5);
 
-        checkCell.innerHTML = `
-            <button class="check-btn">
-                ✓ Checked
-            </button>
-        `;
+        let checkBtn = document.createElement("button");
 
-        checkCell.onclick = function () {
-            row.classList.toggle("checked");
+        checkBtn.innerHTML = "✓ Check";
+        checkBtn.className = "check-btn";
+
+        checkBtn.onclick = function () {
+
+            row.classList.toggle("checked-row");
+
+            if(row.classList.contains("checked-row")){
+                checkBtn.innerHTML = "✓ Checked";
+            }else{
+                checkBtn.innerHTML = "✓ Check";
+            }
+
         };
 
-        // DELETE BUTTON
+        checkCell.appendChild(checkBtn);
+
+        // DELETE BUTTON FOR EACH ROW
         let deleteCell = row.insertCell(6);
 
-        deleteCell.innerHTML = `
-            <button class="delete-btn">
-                Delete
-            </button>
-        `;
+        let deleteBtn = document.createElement("button");
 
-        deleteCell.onclick = function () {
+        deleteBtn.innerHTML = "Delete";
+        deleteBtn.className = "delete-btn";
+
+        deleteBtn.onclick = function () {
             row.remove();
         };
+
+        deleteCell.appendChild(deleteBtn);
 
     });
 
