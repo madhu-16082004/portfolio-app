@@ -124,8 +124,8 @@ async function loadData() {
 
     data.forEach(item => {
 
-        // HIDE DELETED ROWS FOREVER
-        if(deletedIds.includes(item.id)){
+        // HIDE DELETED ROWS
+        if(deletedIds.includes(String(item.id))){
             return;
         }
 
@@ -142,8 +142,10 @@ async function loadData() {
 
         let checkBtn = document.createElement("button");
 
+        checkBtn.className = "check-btn";
+
         // IF ALREADY CHECKED
-        if(checkedIds.includes(item.id)){
+        if(checkedIds.includes(String(item.id))){
 
             row.classList.add("checked-row");
 
@@ -157,21 +159,16 @@ async function loadData() {
 
         }
 
-        checkBtn.className = "check-btn";
-
         checkBtn.onclick = function () {
 
-            // TURN GREEN
             row.classList.add("checked-row");
 
-            // CHANGE BUTTON
             checkBtn.innerHTML = "✓ Checked";
 
-            // DISABLE BUTTON
             checkBtn.disabled = true;
 
-            // SAVE TO LOCAL STORAGE
-            checkedIds.push(item.id);
+            // SAVE CHECKED
+            checkedIds.push(String(item.id));
 
             localStorage.setItem(
                 "checkedRows",
@@ -196,7 +193,7 @@ async function loadData() {
             row.remove();
 
             // SAVE DELETE
-            deletedIds.push(item.id);
+            deletedIds.push(String(item.id));
 
             localStorage.setItem(
                 "deletedRows",
