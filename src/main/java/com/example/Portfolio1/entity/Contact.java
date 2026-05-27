@@ -8,10 +8,18 @@ public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String phone;
     private String name;
     private String email;
     private String message;
+
+public String getPhone() {
+    return phone;
+}
+
+public void setPhone(String phone) {
+    this.phone = phone;
+}
 
     public Contact() {}
 
