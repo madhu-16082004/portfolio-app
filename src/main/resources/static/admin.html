@@ -100,12 +100,15 @@
 
 async function loadData() {
 
-  const res = await fetch("/api/contact");
+    const res = await fetch("/api/contact", {
+        cache: "no-store"
+    });
 
     const data = await res.json();
 
-    let table = document.getElementById("table");
+    const table = document.getElementById("table");
 
+    // CLEAR ONLY ROWS (NOT ENTIRE TABLE TAG)
     table.innerHTML = `
         <tr>
             <th>ID</th>
@@ -118,93 +121,60 @@ async function loadData() {
         </tr>
     `;
 
-    // LOCAL STORAGE
     let deletedIds = JSON.parse(localStorage.getItem("deletedRows")) || [];
     let checkedIds = JSON.parse(localStorage.getItem("checkedRows")) || [];
 
     data.forEach(item => {
 
-        // HIDE DELETED ROWS
-        if(deletedIds.includes(String(item.id))){
-            return;
-        }
+        if (deletedIds.includes(String(item.id))) return;
 
         let row = table.insertRow();
 
-        row.insertCell(0).innerHTML = item.id;
-        row.insertCell(1).innerHTML = item.name;
-        row.insertCell(2).innerHTML = item.email;
-        row.insertCell(3).innerHTML = item.phone || "N/A";
-        row.insertCell(4).innerHTML = item.message;
+        row.insertCell(0).innerText = item.id;
+        row.insertCell(1).innerText = item.name;
+        row.insertCell(2).innerText = item.email;
+        row.insertCell(3).innerText = item.phone || "N/A";
+        row.insertCell(4).innerText = item.message;
 
-        // CHECK BUTTON
         let checkCell = row.insertCell(5);
-
         let checkBtn = document.createElement("button");
 
         checkBtn.className = "check-btn";
 
-        // IF ALREADY CHECKED
-        if(checkedIds.includes(String(item.id))){
-
+        if (checkedIds.includes(String(item.id))) {
             row.classList.add("checked-row");
-
-            checkBtn.innerHTML = "Checked";
-
+            checkBtn.innerText = "Checked";
             checkBtn.disabled = true;
-
-        }else{
-
-            checkBtn.innerHTML = "Check";
-
+        } else {
+            checkBtn.innerText = "Check";
         }
 
-        checkBtn.onclick = function () {
-
+        checkBtn.onclick = () => {
             row.classList.add("checked-row");
-
-            checkBtn.innerHTML = "Checked";
-
+            checkBtn.innerText = "Checked";
             checkBtn.disabled = true;
 
-            // SAVE CHECKED
             checkedIds.push(String(item.id));
-
-            localStorage.setItem(
-                "checkedRows",
-                JSON.stringify(checkedIds)
-            );
+            localStorage.setItem("checkedRows", JSON.stringify(checkedIds));
         };
 
         checkCell.appendChild(checkBtn);
 
-        // DELETE BUTTON
         let deleteCell = row.insertCell(6);
-
         let deleteBtn = document.createElement("button");
 
-        deleteBtn.innerHTML = "Delete";
-
+        deleteBtn.innerText = "Delete";
         deleteBtn.className = "delete-btn";
 
-        deleteBtn.onclick = function () {
-
-            // REMOVE ROW
+        deleteBtn.onclick = () => {
             row.remove();
 
-            // SAVE DELETE
             deletedIds.push(String(item.id));
-
-            localStorage.setItem(
-                "deletedRows",
-                JSON.stringify(deletedIds)
-            );
+            localStorage.setItem("deletedRows", JSON.stringify(deletedIds));
         };
 
         deleteCell.appendChild(deleteBtn);
-
     });
-
 }
 
 </script>
