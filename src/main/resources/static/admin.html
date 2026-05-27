@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel - Messages</title>
+</head>
+
+<body style="background:black;color:white;text-align:center;">
+
+<h1>📩 Contact Messages (Database View)</h1>
+
+<button onclick="loadData()">Load Messages</button>
+
+<table border="1" style="margin:auto; margin-top:20px;" id="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Message</th>
+    </tr>
+</table>
+
+<script>
+async function loadData() {
+
+    const res = await fetch("https://portfolio-app-3-2nn4.onrender.com/api/contact");
+    const data = await res.json();
+
+    let table = document.getElementById("table");
+
+    // clear old rows
+    table.innerHTML = `
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Message</th>
+        </tr>
+    `;
+
+    data.forEach(item => {
+        let row = table.insertRow();
+
+        row.insertCell(0).innerHTML = item.id;
+        row.insertCell(1).innerHTML = item.name;
+        row.insertCell(2).innerHTML = item.email;
+        row.insertCell(3).innerHTML = item.phone || "N/A";
+        row.insertCell(4).innerHTML = item.message;
+    });
+}
+</script>
+
+</body>
+</html>
