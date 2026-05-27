@@ -141,7 +141,7 @@ async function loadData() {
 
         let checkBtn = document.createElement("button");
 
-        checkBtn.innerHTML = "✓ Check";
+        checkBtn.innerHTML = "Check";
         checkBtn.className = "check-btn";
 
         checkBtn.onclick = function () {
@@ -149,9 +149,9 @@ async function loadData() {
             row.classList.toggle("checked-row");
 
             if(row.classList.contains("checked-row")){
-                checkBtn.innerHTML = "✓ Checked";
+                checkBtn.innerHTML = "Checked";
             }else{
-                checkBtn.innerHTML = "✓ Check";
+                checkBtn.innerHTML = "Check";
             }
 
         };
