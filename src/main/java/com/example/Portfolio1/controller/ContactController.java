@@ -5,6 +5,8 @@ import com.example.Portfolio1.service.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
@@ -13,7 +15,8 @@ public class ContactController {
     @Autowired
     private ContactService service;
 
-    @PostMapping(value = "/contact", consumes = "application/json", produces = "application/json")
+    // SAVE DATA (POST)
+    @PostMapping(value = "/contact", consumes = "application/json")
     public String saveContact(@RequestBody Contact contact) {
 
         System.out.println("NAME => " + contact.getName());
@@ -23,11 +26,11 @@ public class ContactController {
         service.save(contact);
 
         return "Saved Successfully";
+    }
 
-        @GetMapping("/contact")
-public java.util.List<Contact> getAllContacts() {
-    return service.getAll();
-}
-        
+    // GET DATA (VIEW DATABASE)
+    @GetMapping("/contact")
+    public List<Contact> getAllContacts() {
+        return service.getAll();
     }
 }
